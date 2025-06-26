@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Image - PixelPotion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <h1>Here’s Your Filtered Image!</h1>
+        </div>
+    </header>
+
+    <div class="result-container">
+        <img id="filteredImage" src="" alt="Filtered Image">
+        <a id="downloadBtn" href="" download>Download Image</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 PixelPotion. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Script to load filtered image -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const filename = params.get("filename");
+
+        if (filename) {
+            const imageUrl = `http://127.0.0.1:5000/processed/${filename}`;
+            document.getElementById("filteredImage").src = imageUrl;
+            document.getElementById("downloadBtn").href = imageUrl;
+        } else {
+            document.querySelector(".result-container").innerHTML =
+                "<p>Error: No image to show!</p>";
+        }
+    </script>
+</body>
+</html>
